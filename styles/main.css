@@ -56,20 +56,27 @@ html, body, .columns {
     flex:1;
 }
 
-.columns .column .content .item{
+.columns .column .content .items{
     font-family: var(--font);
+    color: white;
     text-align: center;
-    background-color: red;
+    background-color: #263238;
     margin: 5px;
+    border-radius: 9px;
+    padding:10px;
 }
 
 .columns .column .add-button{
+    font-family: var(--font);
+    font-size: 25px;
+    line-height: 20px;
     flex-basis:20px;
     margin-top: auto;
     background-color: rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 9px;
     border-bottom-right-radius: 9px;
     border: none;
+    justify-content: center;
 }
 
 .columns .column.todo .header {
