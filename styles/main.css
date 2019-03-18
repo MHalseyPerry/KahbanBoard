@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,420,700');
+
+:root {
+    --background: #37474F;
+    --columnBackground: #546E7A;
+    --itemBackground: #263238;
+
+    --todoHeaderBackground: #fc4a1a;
+    --inProgresHeaderBackground: #4ABDAC;
+    --completeHeaderBackground: #F7B733;
+
+    --font: 'Rubik', sans-serif;
+}
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, .columns {
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+    font-size: 16px;
+}
+
+.columns {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.columns .column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 200px;
+    min-height: 200px;
+    background: var(--columnBackground);
+    border-radius: 9px;
+}
+
+.columns .column .header {
+    text-align: center;
+    padding: 1rem;
+    font-family: var(--font);
+    font-weight: 420;
+    color: white;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+.columns .column .content {
+    flex:1;
+}
+
+.columns .column .content .item{
+    font-family: var(--font);
+    text-align: center;
+    background-color: red;
+    margin: 5px;
+}
+
+.columns .column .add-button{
+    flex-basis:20px;
+    margin-top: auto;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    border: none;
+}
+
+.columns .column.todo .header {
+    background: var(--todoHeaderBackground);
+}
+
+.columns .column.inprog .header {
+    background: var(--inProgresHeaderBackground);
+}
+
+.columns .column.done .header {
+    background: var(--completeHeaderBackground);
+}
+
+
