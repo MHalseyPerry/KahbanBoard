@@ -1,21 +1,61 @@
 (function(){
+
     let counter = 0;
-    let parent = document.getElementById('add');
-    let addButton = document.getElementById('add-button');
-    let delButton = document.getElementById('del-button');
+    let addButtons = [...document.getElementsByClassName('add-button')];
+    addButtons.forEach(btn => btn.addEventListener('click', addTask));
 
-    addButton.addEventListener('click', addTask);
-    delButton.addEventListener('click', delTask);
+    const containers = {
+        todo: document.getElementById('todo'),
+        inProgress: document.getElementById('in-progress'),
+        complete: document.getElementById('complete'),
+    };
 
-    function addTask(){
-        let item = document.createElement("div");
-        let contents = prompt('Please enter the task name');
-        counter++;
-        item.setAttribute('class', 'items');
-        item.setAttribute('id', counter);
-        item.textContent = contents;
-        console.log(counter);
-        parent.appendChild(item);
+    const tasks = getInitialTasks();
+
+    render();
+
+    function addTask (e) {
+        const task = prompt('Please enter the task name');
+        const type = e.target.dataset.type;
+        tasks[type].push(task);
+
+        render();
+        store();
+    }
+
+    function render () {
+
+        for (const [key, container] of Object.entries(containers)) {
+            while (container.lastChild) {
+                container.removeChild(container.lastChild);
+            }
+
+            tasks[key].forEach(task => {
+                const el = document.createElement('div');
+                el.className = 'item';
+
+                el.innerHTML = task;
+                container.appendChild(el);
+            });
+        }
+    }
+
+    function store () {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    function getInitialTasks () {
+        let stringified = localStorage.getItem('tasks');
+
+        if (!stringified) {
+            return {
+                todo: [],
+                inProgress: [],
+                complete: [],
+            }
+        }
+
+        return JSON.parse(stringified);
     }
 
 })()
